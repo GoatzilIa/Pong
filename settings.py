@@ -12,5 +12,5 @@ class Settings():
         self.paddle_width = 30
         self.paddle_height = 100
         self.paddle_color = 60, 60, 60
-        self.paddle_speed_factor = .5
+        self.paddle_speed_factor = 1
 

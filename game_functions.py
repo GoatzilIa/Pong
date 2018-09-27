@@ -37,4 +37,6 @@ def update_screen(p_settings, screen, paddle):
     # Redraw the screen, each pass through the loop.
     screen.fill(p_settings.bg_color)
     paddle.blitme(p_settings)
+    pygame.draw.line(screen, (60, 60, 60), (p_settings.screen_width / 2, 0),
+                     (p_settings.screen_width / 2, p_settings.screen_height), 3)
     pygame.display.flip()

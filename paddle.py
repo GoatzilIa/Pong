@@ -37,5 +37,5 @@ class Paddle(Sprite):
     def blitme(self, p_settings):
         """Draw the ship at its current location."""
         pygame.draw.rect(self.screen, self.color, self.rect)
-        pygame.draw.line(self.screen, (60, 60, 60), (p_settings.screen_width / 2, 0),
-                         (p_settings.screen_width / 2, p_settings.screen_height), 3)
+        # pygame.draw.line(self.screen, (60, 60, 60), (p_settings.screen_width / 2, 0),
+        #                  (p_settings.screen_width / 2, p_settings.screen_height), 3)
