@@ -32,11 +32,12 @@ def check_events(p_settings, screen, paddle):
         elif event.type == pygame.KEYUP:
             check_keyup_events(event, paddle)
 
-def update_screen(p_settings, screen, paddle):
+def update_screen(p_settings, screen, paddle1, paddle2):
     """Update images on the screen, and flip to the new screen."""
     # Redraw the screen, each pass through the loop.
     screen.fill(p_settings.bg_color)
-    paddle.blitme(p_settings)
+    paddle1.blitme(p_settings)
+    paddle2.blitme(p_settings)
     pygame.draw.line(screen, (60, 60, 60), (p_settings.screen_width / 2, 0),
                      (p_settings.screen_width / 2, p_settings.screen_height), 3)
     pygame.display.flip()

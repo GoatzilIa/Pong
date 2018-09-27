@@ -2,16 +2,20 @@ import pygame
 from pygame.sprite import Sprite
 
 class Paddle(Sprite):
-    def __init__(self, p_settings, screen):
+    def __init__(self, p_settings, screen, position):
         """initialzie the paddle and set its starting position"""
         self.screen = screen
         self.p_settings = p_settings
         self.screen_rect = screen.get_rect()
+        self.position = position
 
         # create paddle rect at rigth center
         self.rect = pygame.Rect(0, 0, p_settings.paddle_width, p_settings.paddle_height)
         self.rect.centery = self.screen_rect.centery
-        self.rect.midright = self.screen_rect.midright
+        if position == 'right':
+            self.rect.midright = self.screen_rect.midright
+        elif position == 'left':
+            self.rect.midleft = self.screen_rect.midleft
 
         # store a decimal value for the paddles center
         self.center = float(self.rect.centery)
@@ -37,5 +41,3 @@ class Paddle(Sprite):
     def blitme(self, p_settings):
         """Draw the ship at its current location."""
         pygame.draw.rect(self.screen, self.color, self.rect)
-        # pygame.draw.line(self.screen, (60, 60, 60), (p_settings.screen_width / 2, 0),
-        #                  (p_settings.screen_width / 2, p_settings.screen_height), 3)

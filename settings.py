@@ -9,8 +9,8 @@ class Settings():
         self.bg_color = (230, 230, 230)
 
         # Paddle settings.
-        self.paddle_width = 30
+        self.paddle_width = 20
         self.paddle_height = 100
         self.paddle_color = 60, 60, 60
-        self.paddle_speed_factor = 1
+        self.paddle_speed_factor = 2
 
