@@ -1,12 +1,15 @@
 import pygame
 from settings import Settings
 from paddle import Paddle
+from ball import Ball
 import game_functions as gf
 from pygame.sprite import Group
+from pygame.time import Clock
 
 def run_game():
-    # initialize pygame, settings, and screen objects
+    # initialize pygame, clock, settings, and screen objects
     pygame.init()
+    clock = pygame.time.Clock()
     p_settings = Settings()
     screen = pygame.display.set_mode((p_settings.screen_width, p_settings.screen_height))
     pygame.display.set_caption("Pong")
@@ -22,22 +25,22 @@ def run_game():
     paddle_br = Paddle(p_settings, screen, 'br', 'hor')
     paddle_bl = Paddle(p_settings, screen, 'bl', 'hor')
 
+    # make a ball
+    ball = Ball(p_settings, screen)
+    balls = Group(ball)
+
     # make a group of paddles
-    # left_paddles = Group()
-    # left_paddles.add(paddle_tl)
-    # left_paddles.add(paddle_bl)
-    right_paddles = Group()
-    right_paddles.add(paddle_tr)
-    right_paddles.add(paddle_br)
+    paddles = Group(paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl)
 
     # start the main loop for the game
     while True:
-        gf.check_events(p_settings, screen, paddle_right)
-        gf.check_events(p_settings, screen, paddle_tr)
-        gf.check_events(p_settings, screen, paddle_br)
+        gf.check_ball_paddle_collisions(p_settings, screen, paddles, balls, ball)
+        gf.check_events(p_settings, screen, paddle_right, paddle_tr, paddle_br)
         paddle_right.update()
         paddle_tr.update()
         paddle_br.update()
-        gf.update_screen(p_settings, screen, paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl)
+        ball.update()
+        gf.update_screen(p_settings, screen, paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl, ball)
+        clock.tick(60)
 
 run_game()

@@ -10,7 +10,15 @@ class Settings():
 
         # Paddle settings.
         self.paddle_width = 20
-        self.paddle_height = 100
-        self.paddle_color = 60, 60, 60
-        self.paddle_speed_factor = 1
+        self.paddle_height = 110
+        self.paddle_color1 = 255, 0, 0
+        self.paddle_color2 = 0, 0, 255
+        self.paddle_speed_factor1 = 10
+        self.paddle_speed_factor2 = 20
 
+        # Ball settings
+        self.ball_radius = 25
+        self.ball_diameter = 50
+        self.ball_color = 60, 60, 60
+        self.ball_x_speed_factor = 5
+        self.ball_y_speed_factor = 5
