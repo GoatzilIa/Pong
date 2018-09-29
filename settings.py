@@ -14,7 +14,7 @@ class Settings():
         self.paddle_color1 = 255, 0, 0
         self.paddle_color2 = 0, 0, 255
         self.paddle_speed_factor1 = 10
-        self.paddle_speed_factor2 = 20
+        self.paddle_speed_factor2 = 10
 
         # Ball settings
         self.ball_radius = 25
@@ -22,3 +22,12 @@ class Settings():
         self.ball_color = 60, 60, 60
         self.ball_x_speed_factor = 5
         self.ball_y_speed_factor = 5
+
+        # Game settings
+        self.reset_stats()
+        self.game_active = True
+        self.high_score = 0
+
+    def reset_stats(self):
+        self.score = 0
+        self.level = 1

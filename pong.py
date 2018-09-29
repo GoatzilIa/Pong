@@ -4,6 +4,7 @@ from paddle import Paddle
 from ball import Ball
 import game_functions as gf
 from pygame.sprite import Group
+from message import Message
 from pygame.time import Clock
 
 def run_game():
@@ -13,6 +14,9 @@ def run_game():
     p_settings = Settings()
     screen = pygame.display.set_mode((p_settings.screen_width, p_settings.screen_height))
     pygame.display.set_caption("Pong")
+
+    # create the game over message
+    game_over = Message(screen, "Game Over")
 
     # set the background color
     bg_color = (230, 230, 230)
@@ -36,11 +40,19 @@ def run_game():
     while True:
         gf.check_ball_paddle_collisions(p_settings, screen, paddles, balls, ball)
         gf.check_events(p_settings, screen, paddle_right, paddle_tr, paddle_br)
+        gf.track_ball(ball, paddle_left, paddle_tl, paddle_bl)
         paddle_right.update()
         paddle_tr.update()
         paddle_br.update()
+        paddle_left.update()
+        paddle_tl.update()
+        paddle_bl.update()
         ball.update()
         gf.update_screen(p_settings, screen, paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl, ball)
+        gf.check_ball_out(ball, p_settings, game_over)
+        game_over.draw_msg()
+
+        # set the game fps
         clock.tick(60)
 
 run_game()

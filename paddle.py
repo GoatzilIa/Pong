@@ -54,17 +54,23 @@ class Paddle(Sprite):
         self.moving_left = False
 
     def update(self):
-        """Update the ship's position based on movement flags."""
-        # Update the ship's center value, not the rect.
+        """Update the paddles's position based on movement flags."""
         if self.orientation == 'vert':
             if self.moving_up and self.rect.top > 0:
                 self.rect.centery -= self.p_settings.paddle_speed_factor2
             if self.moving_down and self.rect.bottom < self.screen_rect.bottom:
                 self.rect.centery += self.p_settings.paddle_speed_factor2
-        elif self.orientation == 'hor':
-            if self.moving_left and self.rect.left > self.screen_rect.centerx + 3:
+
+        elif self.orientation == 'hor' and (self.position == 'tr' or self.position == 'br'):
+            if self.moving_left and self.rect.left > self.screen_rect.centerx:
                 self.rect.centerx -= self.p_settings.paddle_speed_factor1
             if self.moving_right and self.rect.right < self.screen_rect.right:
+                self.rect.centerx += self.p_settings.paddle_speed_factor1
+
+        elif self.orientation == 'hor' and (self.position == 'tl' or self.position == 'bl'):
+            if self.moving_left and self.rect.left > 0:
+                self.rect.centerx -= self.p_settings.paddle_speed_factor1
+            if self.moving_right and self.rect.right < self.screen_rect.centerx:
                 self.rect.centerx += self.p_settings.paddle_speed_factor1
 
 

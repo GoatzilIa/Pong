@@ -67,6 +67,27 @@ def change_ball_direction(ball, direction):
     elif direction == 'hor':
         ball.p_settings.ball_y_speed_factor = 0 - ball.p_settings.ball_y_speed_factor
 
+def track_ball(ball, paddle_left, paddle_tl, paddle_bl):
+    if paddle_left.rect.centery > ball.rect.centery:
+        paddle_left.moving_up = True
+    elif paddle_left.rect.centery < ball.rect.centery:
+        paddle_left.moving_down = True
+    elif paddle_left.rect.centery == ball.rect.centery:
+        paddle_left.moving_down = False
+        paddle_left.moving_up = False
+
+    if paddle_tl.rect.centerx > ball.rect.centerx:
+        paddle_tl.moving_left = True
+        paddle_bl.moving_left = True
+    elif paddle_tl.rect.centerx < ball.rect.centerx:
+        paddle_tl.moving_right = True
+        paddle_bl.moving_right = True
+    elif paddle_tl.rect.centerx == ball.rect.centerx:
+        paddle_tl.moving_right = False
+        paddle_bl.moving_right = False
+        paddle_tl.moving_left = False
+        paddle_bl.moving_left = False
+
 def update_screen(p_settings, screen, paddle1, paddle2, paddle3, paddle4, paddle5, paddle6, ball):
     """Update images on the screen, and flip to the new screen."""
     # Redraw the screen, each pass through the loop.
@@ -81,3 +102,10 @@ def update_screen(p_settings, screen, paddle1, paddle2, paddle3, paddle4, paddle
     pygame.draw.line(screen, (60, 60, 60), (p_settings.screen_width / 2, 0),
                      (p_settings.screen_width / 2, p_settings.screen_height), 12)
     pygame.display.flip()
+
+def check_ball_out (ball, p_settings, msg):
+    if ball.rect.centerx > p_settings.screen_width or ball.rect.centerx < 0 \
+            or ball.rect.centery > p_settings.screen_height or ball.rect.centery < 0:
+        p_settings.game_active = False
+        msg.draw_msg()
+
