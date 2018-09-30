@@ -22,12 +22,3 @@ class Settings():
         self.ball_color = 60, 60, 60
         self.ball_x_speed_factor = 5
         self.ball_y_speed_factor = 5
-
-        # Game settings
-        self.reset_stats()
-        self.game_active = True
-        self.high_score = 0
-
-    def reset_stats(self):
-        self.score = 0
-        self.level = 1

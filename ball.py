@@ -18,19 +18,11 @@ class Ball(Sprite):
         self.rect.centerx = self.screen_rect.centerx / 2
         self.rect.centery = self.screen_rect.centery / 2
 
-
-    def check_edges(self):
-        """Return True if ball is at edge of screen."""
-        screen_rect = self.screen.get_rect()
-        if self.rect.right >= screen_rect.right:
-            return True
-        elif self.rect.left <= 0:
-            return True
-
     def update(self):
         """Move the alien right or left."""
         self.rect.centerx += self.p_settings.ball_x_speed_factor
         self.rect.centery += self.p_settings.ball_y_speed_factor
+        # self.blitme()
 
     def blitme(self):
         """Draw the alien at its current location."""

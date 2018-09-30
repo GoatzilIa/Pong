@@ -73,6 +73,7 @@ class Paddle(Sprite):
             if self.moving_right and self.rect.right < self.screen_rect.centerx:
                 self.rect.centerx += self.p_settings.paddle_speed_factor1
 
+        # self.blitme()
 
     def blitme(self):
         """Draw the paddle at its current location."""
