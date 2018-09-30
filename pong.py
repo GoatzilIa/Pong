@@ -8,6 +8,7 @@ from button import Button
 from scoreboard import Scoreboard
 from game_stats import GameStats
 import game_intro as gi
+import game_over as go
 from pygame.time import Clock
 
 
@@ -49,6 +50,8 @@ def run_game():
     gi.Game_Intro(p_settings, screen, stats, sb, play_button,
                               paddles, ball, paddle_right, paddle_tr, paddle_br, clock)
 
+
+
     # start the main loop for the game
     while True:
 
@@ -69,15 +72,23 @@ def run_game():
             gf.check_ball_paddle_collisions(p_settings, screen, ball,
                                             paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl)
 
-
-        print("player score " + str(stats.p_score))
-        print("ai score " + str(stats.ai_score))
+        # print("player score " + str(stats.p_score))
+        # print("ai score " + str(stats.ai_score))
 
         gf.update_screen(p_settings, screen, paddles, ball, sb, stats, play_button,
                          paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl)
 
         gf.check_ball_out(p_settings, screen, screen_rect, stats, sb, paddles, ball,
                               paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl)
+
+        # checks if score limit has been reached
+        if stats.ai_score == 5 or stats.p_score == 5:
+            # game over screen
+            go.Game_Over(p_settings, screen, stats, sb, play_button,
+                         paddles, ball, paddle_right, paddle_tr, paddle_br, clock)
+            stats.reset_stats()
+            sb.prep_p_score()
+            sb.prep_ai_score()
 
         # set the game fps
         clock.tick(60)

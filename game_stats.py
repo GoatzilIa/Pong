@@ -1,5 +1,5 @@
 class GameStats():
-    """Track statistics for Alien Invasion."""
+    """Track score for each player."""
 
     def __init__(self, p_settings):
         """Initialize statistics."""

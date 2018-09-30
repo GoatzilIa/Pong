@@ -82,13 +82,13 @@ def check_ball_paddle_collisions(p_settings, screen, ball,
         change_ball_direction(ball, direction)
 
 
-
 def change_ball_direction(ball, direction):
     """changes the direction of the ball depending on what paddles it hits"""
     if direction == 'vert':
         ball.p_settings.ball_x_speed_factor = 0 - ball.p_settings.ball_x_speed_factor
     elif direction == 'hor':
         ball.p_settings.ball_y_speed_factor = 0 - ball.p_settings.ball_y_speed_factor
+
 
 def track_ball(ball, paddle_left, paddle_tl, paddle_bl):
     """moves the AI's paddles depending of the position of the ball"""
@@ -144,7 +144,7 @@ def update_screen(p_settings, screen, paddles, ball, sb, stats, play_button,
 
 def check_ball_out (p_settings, screen, screen_rect, stats, sb, paddles, ball,
                     paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl):
-    """checks if the ball has his the edge of the screen"""
+    """checks if the ball has hit the edge of the screen"""
     out = False
 
     # checks if the ball hit the edge of the right side of the screen
@@ -227,6 +227,7 @@ def create_ball(p_settings, screen):
     ball = Ball(p_settings, screen)
 
 def reset_paddles(screen_rect, paddle_right, paddle_left, paddle_tr, paddle_tl, paddle_br, paddle_bl):
+    """resets all the paddles to their starting position"""
     # reset left and right paddles
     paddle_right.rect.midright = screen_rect.midright
     paddle_left.rect.midleft = screen_rect.midleft
@@ -243,6 +244,7 @@ def reset_paddles(screen_rect, paddle_right, paddle_left, paddle_tr, paddle_tl, 
     paddle_bl.rect.centerx = screen_rect.centerx / 2
 
 def reset_ball(screen_rect, ball):
+    """resets the ball to its starting position"""
     ball.rect.centerx = screen_rect.centerx
     ball.rect.centery = screen_rect.centery
     # print("ball reset")

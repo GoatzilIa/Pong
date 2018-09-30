@@ -29,7 +29,7 @@ class Scoreboard():
         self.p_score_rect = self.p_score_image.get_rect()
         self.p_score_rect.centerx = self.screen_rect.centerx + 50
         self.p_score_rect.top = 20
-        print("p_prepped")
+        # print("p_prepped")
 
     def prep_ai_score(self):
         """Turn the high score into a rendered image."""
@@ -40,11 +40,11 @@ class Scoreboard():
         self.ai_score_rect = self.ai_score_image.get_rect()
         self.ai_score_rect.centerx = self.screen_rect.centerx - 50
         self.ai_score_rect.top = self.p_score_rect.top
-        print("ai_prepped")
+        # print("ai_prepped")
 
     def show_score(self):
         """Draw score to the screen."""
         self.screen.blit(self.p_score_image, self.p_score_rect)
         self.screen.blit(self.ai_score_image, self.ai_score_rect)
-        print("score drawn")
+        # print("score drawn")
 

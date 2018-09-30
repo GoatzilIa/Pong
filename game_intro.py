@@ -5,10 +5,11 @@ from button import Button
 import game_functions as gf
 
 def Game_Intro(p_settings, screen, stats, sb, play_button, paddles, ball, paddle_right, paddle_tr, paddle_br, clock):
+    """creates a start screen"""
     intro = True
 
     while intro:
-
+        """shows the start screen until the player clicks the play button"""
         screen.fill((20, 20, 20))
         largeText = pygame.font.Font('freesansbold.ttf', 80)
         smallText =  pygame.font.Font('freesansbold.ttf', 40)
@@ -27,6 +28,7 @@ def Game_Intro(p_settings, screen, stats, sb, play_button, paddles, ball, paddle
         Text4Rect.center = ((p_settings.screen_width / 2), (p_settings.screen_height / 20) * 17)
         screen.blit(Text4Surf, Text4Rect)
 
+        # checks if the play button has been pressed
         play_button.draw_button()
         gf.check_events(p_settings, screen, stats, sb, play_button, paddles, ball, paddle_right, paddle_tr, paddle_br)
         if stats.game_active:
@@ -36,5 +38,5 @@ def Game_Intro(p_settings, screen, stats, sb, play_button, paddles, ball, paddle
         clock.tick(60)
 
 def text_objects(text, font):
-    textSurface = font.render(text, True,(255, 255, 255) )
+    textSurface = font.render(text, True,(0, 255, 0) )
     return textSurface, textSurface.get_rect()
