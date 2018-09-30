@@ -131,8 +131,8 @@ def update_screen(p_settings, screen, paddles, ball, sb, stats, play_button,
                      (p_settings.screen_width / 2, p_settings.screen_height), 12)
 
     # draws the scoreboard
-    sb.prep_p_score()
-    sb.prep_ai_score()
+    # sb.prep_p_score()
+    # sb.prep_ai_score()
     sb.show_score()
 
     # draws the play button if the game is inactive
@@ -153,12 +153,14 @@ def check_ball_out (p_settings, screen, screen_rect, stats, sb, paddles, ball,
         or (ball.rect.centery < 0 and ball.rect.centerx > p_settings.screen_width / 2):
         out = True
         stats.ai_score += 1
+        sb.prep_ai_score()
 
     # checks if the ball went out on the left side of the screen
     elif ball.rect.centerx < 0 or (ball.rect.centery > p_settings.screen_height and ball.rect.centerx < p_settings.screen_width / 2)\
         or (ball.rect.centery < 0 and ball.rect.centerx < p_settings.screen_width / 2):
         out = True
         stats.p_score += 1
+        sb.prep_p_score()
 
     if out:
         # set the game to inactive
@@ -241,6 +243,6 @@ def reset_paddles(screen_rect, paddle_right, paddle_left, paddle_tr, paddle_tl, 
     paddle_bl.rect.centerx = screen_rect.centerx / 2
 
 def reset_ball(screen_rect, ball):
-    ball.rect.centerx = screen_rect.centerx / 2
-    ball.rect.centery = screen_rect.centery / 2
+    ball.rect.centerx = screen_rect.centerx
+    ball.rect.centery = screen_rect.centery
     # print("ball reset")

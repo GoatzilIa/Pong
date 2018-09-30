@@ -15,8 +15,8 @@ class Ball(Sprite):
         self.rect = pygame.Rect(0, 0, p_settings.ball_diameter, p_settings.ball_diameter)
 
         # Start the ball near the top left of the screen.
-        self.rect.centerx = self.screen_rect.centerx / 2
-        self.rect.centery = self.screen_rect.centery / 2
+        self.rect.centerx = self.screen_rect.centerx
+        self.rect.centery = self.screen_rect.centery
 
     def update(self):
         """Move the alien right or left."""

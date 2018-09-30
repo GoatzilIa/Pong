@@ -20,5 +20,5 @@ class Settings():
         self.ball_radius = 25
         self.ball_diameter = 50
         self.ball_color = 60, 60, 60
-        self.ball_x_speed_factor = 5
-        self.ball_y_speed_factor = 5
+        self.ball_x_speed_factor = 10
+        self.ball_y_speed_factor = 10
